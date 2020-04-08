@@ -5,3 +5,7 @@ Install Chalk (Local)
     npm install chalk
 
 Install GIT
+
+Pull branch 
+    git pull origin day-1
+    
