@@ -1,0 +1,12 @@
+{
+    "name" : "praveen",
+    "company" : "edureka",
+    "contact" : [4239482424, 4234242444],
+    "address" : {
+        "flatno" : "424",
+        "society" : "jdajsdkdasd",
+        "city" : "Delhi",
+        "country" : "India",
+        "pincode" : 110112
+    }
+}
