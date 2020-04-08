@@ -1,8 +1,7 @@
-Create package.json
-    npm init
+Installing Nodemon (GLOBAL)
+    npm install -g nodemon
 
-Install Lodash
-    npm install lodash
+Install Chalk (Local)
+    npm install chalk
 
-Stop HTTP Server
-    keystroke CTRL + C
+Install GIT

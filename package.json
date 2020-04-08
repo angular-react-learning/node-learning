@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/angular-react-learning/node-learning#readme",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "chalk": "^4.0.0"
   }
 }
