@@ -8,4 +8,6 @@ Install GIT
 
 Pull branch 
     git pull origin day-1
-    
+
+Install PM2
+    npm install -g pm2
