@@ -12,8 +12,14 @@ writeFilePromise("promise-file.txt", "Promise")
     console.log("Promise file created.")
 })
 .then(()=>{
-    return readFilePromise("promise-file.txt", "utf-8")
+    return readFilePromise("promise-file-1.txt", "utf-8")
+    .catch(()=>{
+        console.log("not able to read file")  
+    })
 })
 .then((contents)=>{
     console.log("contents - ", contents)
+})
+.catch((err)=>{
+    console.log(err)
 })
