@@ -1,0 +1,10 @@
+{
+    "apps" : [
+        {
+            "name" : "Edureka Demo",
+            "script" : "./server.js",
+            "instances" : 2,
+            "exec_mode" : "cluster"
+        }
+    ]
+}
