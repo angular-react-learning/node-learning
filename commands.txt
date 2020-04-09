@@ -11,3 +11,7 @@ Pull branch
 
 Install PM2
     npm install -g pm2
+
+
+Start PM2 application 
+    pm2 start pm2.json
