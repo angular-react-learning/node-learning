@@ -27,8 +27,21 @@ app.post("/movies", (req, res)=>{
     MongoClient.connect(MongoURL, (err, client)=>{
         const db = client.db("imdb");
         const collection = db.collection("movie");
-        collection.insert(req.body, function(err, response){
+        collection.save(req.body, function(err, response){
             res.send("inserted.")
+            client.close();
+        })
+    })
+})
+
+app.put("/movies/:id", (req, res)=>{
+    console.log(req.params.id);
+    MongoClient.connect(MongoURL, (err, client)=>{
+        const db = client.db("imdb");
+        const collection = db.collection("movie");
+        collection.update({ name : "Black Panther" }, { $set : { achie : 2 } } ,function(err, response){
+            console.log(err);
+            res.send("updated.")
             client.close();
         })
     })
