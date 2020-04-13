@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+const mongoose = require("mongoose");
+const db = mongoose.connect("mongodb://localhost:27017/imdb", { useNewUrlParser: true })
 
 const home = require("./routes/index")
 const name = require("./routes/name");

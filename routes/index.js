@@ -1,32 +1,40 @@
 const express = require("express");
 const router = express.Router();
 const { getConnection } = require("../util/mongo")
+const MovieModel = require("../model/movies");
 
 
 router.get("/", (req, res) => {
-    getConnection((err, client) => {
-        const db = client.db("imdb");
-        const collection = db.collection("movie");
-        collection.find({}).toArray((err, docs) => {
-            res.send(docs);
-            client.close();
-        })
+    MovieModel.find((err, docs)=>{
+        console.log(err, docs);
+        res.send(docs);
     })
 });
 
 
 router.post("/", (req, res) => {
-    getConnection((err, client) => {
-        const db = client.db("imdb");
-        const collection = db.collection("movie");
-        collection.insertOne({
-            name: req.body.name,
-            year: req.body.year,
-            rating: req.body.rating
-        }, (err, docs) => {
-            res.send(docs.ops[0]);
-        })
+
+    const name = req.body.name;
+    const year = req.body.year;
+    const rating = req.body.rating;
+    const achievements = req.body.achievements;
+
+    const movie = new MovieModel({
+        name : name,
+        year : year,
+        rating : rating,
+        achievements : achievements
     })
+
+    movie.save((err)=>{
+        res.send({})
+    })
+
+    // or 
+    MovieModel.insertMany([{
+
+    }]).then
+
 });
 
 router.get("/achievements", (req, res) => {
