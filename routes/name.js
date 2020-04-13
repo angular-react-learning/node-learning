@@ -12,6 +12,7 @@ router.get("/:name", (req, res) => {
     })
 });
 
+
 router.put("/:name", (req, res) => {
     getConnection((err, client) => {
         const db = client.db("imdb");

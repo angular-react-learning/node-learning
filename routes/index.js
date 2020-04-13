@@ -29,4 +29,14 @@ router.post("/", (req, res) => {
     })
 });
 
+router.get("/achievements", (req, res) => {
+    getConnection((err, client) => {
+        const db = client.db("imdb");
+        const collection = db.collection("movie");
+        collection.find({ achievements: { $exists: true } }).toArray((err, docs) => {
+            res.send(docs);
+        })
+    })
+});
+
 module.exports = router;
