@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended : true }))
 app.use("/graphql", expressGraphQL({
     schema : schema,
     graphiql : true, // Development Env
-    rootValue : Resolvers
+    rootValue : Resolvers,
+    
 }))
 
 app.use("/user", user);

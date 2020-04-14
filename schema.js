@@ -11,6 +11,11 @@ const ApplicationSchema = buildSchema(`
         name : String,
         email : String,
         address : String
+        _id : String
+    }
+
+    type Mutation {
+        addUser(name : String, email : String, address : String) : User
     }
 
 `);
