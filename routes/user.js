@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router();
 const UserModel = require("../model/user");
+const { checkUsername } = require("../validator")
 
 Router.get("/", (req, res)=>{
     res.render("add-user", {});
@@ -8,7 +9,7 @@ Router.get("/", (req, res)=>{
 
 Router.post("/", (req, res)=>{
 
-    if(req.body.name !== "" && req.body.address !== "" && req.body.email !== "")
+    if(checkUsername(req.body.name) && req.body.name !== "" && req.body.address !== "" && req.body.email !== "")
         {
             const User = new UserModel({
                 name : req.body.name.trim(),
