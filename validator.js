@@ -1,6 +1,6 @@
 function checkUsername(value)
     {
-        return true
+        return RegExp(/^[a-zA-Z]+$/).test(value)
     }
 
 module.exports = {

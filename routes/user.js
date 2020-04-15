@@ -9,7 +9,7 @@ Router.get("/", (req, res)=>{
 
 Router.post("/", (req, res)=>{
 
-    if(checkUsername(req.body.name) && req.body.name !== "" && req.body.address !== "" && req.body.email !== "")
+    if(req.body.name !== "" && checkUsername(req.body.name) &&  req.body.address !== "" && req.body.email !== "")
         {
             const User = new UserModel({
                 name : req.body.name.trim(),
