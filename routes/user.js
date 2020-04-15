@@ -9,6 +9,8 @@ Router.get("/", (req, res)=>{
 
 Router.get("/dashboard", (req, res)=>{
     UserModel.find().then((response)=>{
+
+        
         res.render("dashboard", { posts : response });
     })
 });

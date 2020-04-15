@@ -5,6 +5,10 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" />
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <style>
+        .highlight { background-color: yellowgreen !important; } 
+    </style>
+
 </head>
 
 <body>
@@ -21,7 +25,7 @@
         </thead>
         <tbody>
         <% posts.forEach(function(post){ %>
-        <tr>
+        <tr class="highlight">
             <th><%= post._id %></th>
             <th><%= post.name %></th>
             <th><%= post.createdOn %></th>
