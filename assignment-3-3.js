@@ -36,6 +36,8 @@ app.get("/getemployeedetails/:id", (req, res)=>{
         return axios.get(`http://localhost:3001/project/${employee.project}`)
             .then((responseProject)=>{
                 employee.project = responseProject.data;
+                // rest operator.
+                // return {...employee, project : responseProject.data }
                 return employee
             })
     })
