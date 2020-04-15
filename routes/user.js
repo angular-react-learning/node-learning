@@ -7,6 +7,13 @@ Router.get("/", (req, res)=>{
     res.render("add-user", {});
 });
 
+Router.get("/dashboard", (req, res)=>{
+    UserModel.find().then((response)=>{
+        res.render("dashboard", { posts : response });
+    })
+});
+
+
 Router.post("/", (req, res)=>{
 
     if(req.body.name !== "" && checkUsername(req.body.name) &&  req.body.address !== "" && req.body.email !== "")
