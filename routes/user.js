@@ -7,14 +7,21 @@ Router.get("/", (req, res)=>{
 });
 
 Router.post("/", (req, res)=>{
-    console.log(req.body);
-    const User = new UserModel({
-        name : req.body.name,
-        address : req.body.address,
-        email : req.body.email
-    })
-    User.save();
-    res.send("user has been added...");
+
+    if(req.body.name !== "" && req.body.address !== "" && req.body.email !== "")
+        {
+            const User = new UserModel({
+                name : req.body.name.trim(),
+                address : req.body.address.trim(),
+                email : req.body.email.trim()
+            })
+            User.save();
+            res.send("user has been added...");
+        }
+    else
+        {
+            res.send("user input is invalid.");
+        }
 });
 
 module.exports = Router;
