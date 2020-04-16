@@ -52,6 +52,19 @@ Router.post("/login", (req, res) => {
     // res.send({
     //     token: 897938127391739123
     // })
+});
+
+Router.post("/whoami", (req, res)=>{
+    const token = req.headers["x-access-token"];
+    if(!token){ res.status(401).send({ message : "no token found in request." }) };
+
+    jwt.verify(token, "secret key is this", (err, decoded)=>{
+        UserModel.findById(decoded.id, { password : false }, (err, user)=>{
+            console.log(user);
+            res.send(user);
+        })
+    })
+
 })
 
 Router.post("/logout", (req, res) => {
