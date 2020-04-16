@@ -4,6 +4,8 @@ const UserModel = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const Config = require("../config")
+
 Router.get("/", (req, res) => {
     res.send([])
 })
@@ -38,7 +40,7 @@ Router.post("/login", (req, res) => {
         const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
         if (passwordIsValid) {
-            const token = jwt.sign({ id : user._id }, "secret key is this", {
+            const token = jwt.sign({ id : user._id }, Config.SECRET_KEY, {
                 expiresIn : 86400
             })
             res.send({ token : token })
@@ -58,7 +60,7 @@ Router.post("/whoami", (req, res)=>{
     const token = req.headers["x-access-token"];
     if(!token){ res.status(401).send({ message : "no token found in request." }) };
 
-    jwt.verify(token, "secret key is this", (err, decoded)=>{
+    jwt.verify(token, Config.SECRET_KEY, (err, decoded)=>{
         UserModel.findById(decoded.id, { password : false }, (err, user)=>{
             console.log(user);
             res.send(user);
