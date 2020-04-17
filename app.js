@@ -4,6 +4,7 @@ import http from "http";
 import socketio from "socket.io";
 
 const application = express();
+const socketUsers = {};
 
 application.use(express.static(path.join(__dirname, "public")))
 
@@ -18,12 +19,13 @@ SocketInstance.sockets.on("connection", (socket) => {
     var user = Object.keys(list);
 
     socket.on("signin", (name) => {
+        socketUsers[socket] = { name : name }
         socket.emit("userloggedin", user)
     })
 
     socket.on("chat", (message) => {
-        socket.emit("chat", message)
-        socket.broadcast.emit("chat", message)
+        socket.emit("chat", { sendBy : socketUsers[socket], message })
+        socket.broadcast.emit("chat", { sentBy : socketUsers[socket], message })
     })
 
 })

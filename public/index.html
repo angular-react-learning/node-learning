@@ -28,8 +28,8 @@
                 document.getElementById("userlist").innerHTML = users;
             })
 
-            socket.on("chat", (data)=>{
-                document.getElementById("messages").value = (document.getElementById("messages").value + "\n" + data + "\n");
+            socket.on("chat", ({ sentBy, message })=>{
+                document.getElementById("messages").value = (document.getElementById("messages").value + "\n" + `${sentBy.name}: ${message}` + "\n");
             })
 
             document.getElementById("send-nickname").addEventListener("click", ()=>{
