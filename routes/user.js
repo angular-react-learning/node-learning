@@ -47,7 +47,8 @@ Router.post("/", (req, res)=>{
                 email : req.body.email.trim()
             })
             User.save();
-            res.send("user has been added...");
+            // res.send("user has been added...");
+            res.redirect("/user/dashboard")
         }
     else
         {
