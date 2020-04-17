@@ -26,6 +26,6 @@ app.use("/graphql", expressGraphQL({
 
 app.use("/user", user);
 
-app.listen(3000, ()=>{
+app.listen(3001, ()=>{
     console.log("Server Started...")
 });

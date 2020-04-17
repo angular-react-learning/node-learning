@@ -3,14 +3,35 @@ const Router = express.Router();
 const UserModel = require("../model/user");
 const { checkUsername } = require("../validator")
 
+const {calculateDaysDiff} = require("../util")
+
 Router.get("/", (req, res)=>{
     res.render("add-user", {});
 });
 
 Router.get("/dashboard", (req, res)=>{
     UserModel.find().then((response)=>{
+        console.log(response);
 
-        
+        for (let index = 0; index < response.length; index++) {
+            const user = response[index];
+
+            const diff = calculateDaysDiff(user.createdOn);
+
+            if(diff > 2)
+                {
+                    user.status = "delivered"
+                }
+            else if(diff === 1)
+                {
+                    user.status = "dispatched"
+                }
+            else if (diff === 0)
+                {
+                    user.status = "in-progress"
+                }
+        }
+
         res.render("dashboard", { posts : response });
     })
 });
